@@ -11,8 +11,10 @@ export class SignedUpViewComponent {
   modalEvent;
 
   constructor() {
-    this.allEvts = JSON.parse(localStorage.getItem('mainData'));
-    this.runFunctions();
+    if(localStorage.getItem('mainData') != null) {
+      this.allEvts = JSON.parse(localStorage.getItem('mainData'));
+      this.runFunctions();
+    }
   }
 
   async runFunctions() {

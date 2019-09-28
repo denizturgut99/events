@@ -11,18 +11,31 @@ export class MainViewComponent {
   evtData;
   modalEvt;
 
+  // constructor(private mainData: CityJsonDataService) {
+  //   this.mainData.getCities().subscribe(aData => { 
+  //     this.cityData = aData;
+  //     //console.log(this.cityData);
+  //   });
+  //   this.mainData.getEvents().subscribe(bData => { 
+  //     this.evtData = bData; 
+  //     //console.log(this.evtData); 
+  //     if(localStorage.getItem('mainData') != null) {
+  //       this.evtData = JSON.parse(localStorage.getItem('mainData'))
+  //     }
+  //     this.runFunctions() ;
+  //   });
+  // }
+
   constructor(private mainData: CityJsonDataService) {
-    this.mainData.getCities().subscribe(aData => { 
+    this.mainData.getCities().subscribe(aData => {
       this.cityData = aData;
-      //console.log(this.cityData);
     });
-    this.mainData.getEvents().subscribe(bData => { 
-      this.evtData = bData; 
-      //console.log(this.evtData); 
+    this.mainData.getEvents().subscribe(bData => {
+      this.evtData = bData;
       if(localStorage.getItem('mainData') != null) {
         this.evtData = JSON.parse(localStorage.getItem('mainData'))
       }
-      this.runFunctions() ;
+      this.runFunctions()
     });
   }
 
