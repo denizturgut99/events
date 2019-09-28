@@ -1,1 +1,115 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: rgb(245, 245, 245);
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #c2c2c2;
+}
+
+.modal-title {
+  margin-bottom: 0;
+  text-align: center;
+  color: black;
+  font-size: 15px;
+  /* line-height: 1.5; */
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 2px 16px;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 2px 16px;
+  color: white;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0
+  }
+
+  to {
+    top: 0;
+    opacity: 1
+  }
+}
+
+.allEvents {
+  background-color: white;
+  width: 100%;
+  border: 1px rgb(212, 212, 212) solid;
+  display: flex;
+}
+
+.evtData {
+  display: flex;
+}
+
+.freeEvt {
+  color: green;
+}
+
+.events {
+  width: 100%;
+}
+
+.events p {
+  margin: 0px 0px 0px;
+  font-size: 15px;
+  padding-right: 5px;
+}
+
+.cityName {
+  color: rgb(189, 185, 185);
+  font-size: 15px;
+}
+
+.centerEvents {
+  margin: auto;
+  width: 50%;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.dates {
+  padding-top: 15px;
+}
+
+.button {
+  background-color: rgb(88, 88, 255);
+  border: none;
+  color: white;
+  width: 100px;
+  height: 36px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 4px 2px;
+  border-radius: 4px;
+}
+
