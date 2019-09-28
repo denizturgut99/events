@@ -13,13 +13,15 @@ export class MainViewComponent {
 
   constructor(private mainData: CityJsonDataService) {
     this.mainData.getCities().subscribe(aData => { 
-      this.cityData = aData; 
+      this.cityData = aData;
       //console.log(this.cityData);
     });
     this.mainData.getEvents().subscribe(bData => { 
       this.evtData = bData; 
       //console.log(this.evtData); 
-      this.evtData = JSON.parse(localStorage.getItem('mainData'))
+      if(localStorage.getItem('mainData') != null) {
+        this.evtData = JSON.parse(localStorage.getItem('mainData'))
+      }
       this.runFunctions() ;
     });
   }
