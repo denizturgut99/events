@@ -11,21 +11,6 @@ export class MainViewComponent {
   evtData;
   modalEvt;
 
-  // constructor(private mainData: CityJsonDataService) {
-  //   this.mainData.getCities().subscribe(aData => { 
-  //     this.cityData = aData;
-  //     //console.log(this.cityData);
-  //   });
-  //   this.mainData.getEvents().subscribe(bData => { 
-  //     this.evtData = bData; 
-  //     //console.log(this.evtData); 
-  //     if(localStorage.getItem('mainData') != null) {
-  //       this.evtData = JSON.parse(localStorage.getItem('mainData'))
-  //     }
-  //     this.runFunctions() ;
-  //   });
-  // }
-
   constructor(private mainData: CityJsonDataService) {
     this.mainData.getCities().subscribe(aData => {
       this.cityData = aData;
@@ -74,19 +59,19 @@ export class MainViewComponent {
     let eventData = this.evtData;
 
     function sortDate(array, key) {
-      return array.sort((a, b)=>{
+      return array.sort((a, b) => {
         let x = a[key];
         let y = b[key];
-        if(x < y) {
-          return -1;
-        } else if(x > y) {
+        if(x > y) {
           return 1;
+        } else if (x < y) {
+          return -1;
         } else {
           return 0;
         }
-      })
+      }) 
     }
-    this.evtData = sortDate(eventData, 'startDate');
+    this.evtData = sortDate(eventData, "startDate")
   }
 
   joinEvent(e) {

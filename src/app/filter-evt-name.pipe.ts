@@ -6,10 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterEvtNamePipe implements PipeTransform {
 
   transform(value: any, term: any): any {
-    if(term===undefined) return value;
-    return value.filter((event)=>{
-      let eventName = event.name.toLowerCase().includes(term.toLowerCase());
-      return eventName;
+    if(term === undefined) return value;
+
+    return value.filter((event) => {
+      let evtName = event.name.toLowerCase().includes(term.toLowerCase())
+      return evtName
     })
   }
 
