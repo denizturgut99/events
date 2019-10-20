@@ -1,5 +1,5 @@
 import { CityJsonDataService } from './../city-json-data.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main-view',
@@ -15,8 +15,10 @@ export class MainViewComponent {
     this.mainData.getCities().subscribe(aData => {
       this.cityData = aData;
     });
+
     this.mainData.getEvents().subscribe(bData => {
       this.evtData = bData;
+      //localStorage.clear()
       if(localStorage.getItem('mainData') != null) {
         this.evtData = JSON.parse(localStorage.getItem('mainData'))
       }
@@ -27,12 +29,14 @@ export class MainViewComponent {
   async runFunctions() {
     await this.assignCity()
     await this.createTime()
-    await this.sortByDate()
+    //await this.sortByDate()
     await this.isSigned();
   }
 
   //match the IDs in the event data with the IDs in the city data in order to display the city name
   assignCity() {
+    console.log(this.cityData)
+    console.log(this.evtData)
     for (let i = 0; i < this.evtData.length; i++) {
       for (let y = 0; y < this.cityData.length; y++) {
         if (this.evtData[i].city == this.cityData[y].id) {
@@ -41,6 +45,10 @@ export class MainViewComponent {
       }
     }
   }
+
+  // getCityName(cityId) {
+  //   return this.cityData.find(city => city.id === cityId).name;
+  // }
 
   createTime() {
     let fullDate = [];
@@ -55,24 +63,24 @@ export class MainViewComponent {
     //console.log(this.evtData);
   }
 
-  sortByDate() {
-    let eventData = this.evtData;
+  // sortByDate() {
+  //   let eventData = this.evtData;
 
-    function sortDate(array, key) {
-      return array.sort((a, b) => {
-        let x = a[key];
-        let y = b[key];
-        if(x > y) {
-          return 1;
-        } else if (x < y) {
-          return -1;
-        } else {
-          return 0;
-        }
-      }) 
-    }
-    this.evtData = sortDate(eventData, "startDate")
-  }
+  //   function sortDate(array) {
+  //     return array.sort((a, b) => {
+  //       let x = a['startDate'];
+  //       let y = b['startDate'];
+  //       if(x > y) {
+  //         return 1;
+  //       } else if (x < y) {
+  //         return -1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     }) 
+  //   }
+  //   this.evtData = sortDate(eventData)
+  // }
 
   joinEvent(e) {
     this.modalEvt = Array(e)

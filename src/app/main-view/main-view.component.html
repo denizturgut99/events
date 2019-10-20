@@ -8,9 +8,9 @@
         type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
     </div>
   </form>
-  <div *ngFor='let event of evtData | filterEvtName:evtName ; let i = index;'>
+  <div *ngFor='let event of evtData | dateSortPipe | filterEvtName:evtName; let i = index;'>
     <div *ngIf='event.date !== evtData[i-1]?.date' class="dates"> {{event.date}} </div>
-    <div class='allEvents'>
+    <span class='allEvents'>
       <div class='time'> {{event.time}} </div>
       <div class="events">
         <div class='evtData'>
@@ -22,7 +22,7 @@
       <button *ngIf="event.isSignedUp == false" id='joinButton' class='button' type='button' data-toggle="modal"
         data-target="#myModal" (click)="joinEvent(event)"> Join! </button>
         <p *ngIf="event.isSignedUp == true" class="alreadyJoined">Joined!</p>
-    </div>
+    </span>
   </div>
 </div>
 

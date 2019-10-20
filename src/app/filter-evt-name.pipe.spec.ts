@@ -1,4 +1,4 @@
-import { FilterEvtNamePipe } from './filter-evt-name.pipe';
+import { FilterEvtNamePipe } from './pipes/filter-evt-name.pipe';
 
 describe('FilterEvtNamePipe', () => {
   it('create an instance', () => {
