@@ -11,6 +11,7 @@ import { NotFoundViewComponent } from './not-found-view/not-found-view.component
 import { FilterEvtNamePipe } from './pipes/filter-evt-name.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DateSortPipePipe } from './pipes/date-sort-pipe.pipe';
+import { EventViewComponent } from './event-view/event-view.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DateSortPipePipe } from './pipes/date-sort-pipe.pipe';
     SignedUpViewComponent,
     NotFoundViewComponent,
     FilterEvtNamePipe,
-    DateSortPipePipe
+    DateSortPipePipe,
+    EventViewComponent
   ],
   imports: [
     BrowserModule,

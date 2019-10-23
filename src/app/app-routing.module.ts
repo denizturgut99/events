@@ -5,9 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { NotFoundViewComponent } from './not-found-view/not-found-view.component';
 
 
-const appRoutes: Routes = [{
+const appRoutes: Routes = [
+{
   path:'', component: MainViewComponent
-}, {
+},
+ {
   path: 'allEvents', component: MainViewComponent
 }, {
   path:'signedEvents', component: SignedUpViewComponent

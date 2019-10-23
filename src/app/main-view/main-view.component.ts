@@ -29,7 +29,6 @@ export class MainViewComponent {
   async runFunctions() {
     await this.assignCity()
     await this.createTime()
-    //await this.sortByDate()
     await this.isSigned();
   }
 
@@ -62,30 +61,7 @@ export class MainViewComponent {
     }
     //console.log(this.evtData);
   }
-
-  // sortByDate() {
-  //   let eventData = this.evtData;
-
-  //   function sortDate(array) {
-  //     return array.sort((a, b) => {
-  //       let x = a['startDate'];
-  //       let y = b['startDate'];
-  //       if(x > y) {
-  //         return 1;
-  //       } else if (x < y) {
-  //         return -1;
-  //       } else {
-  //         return 0;
-  //       }
-  //     }) 
-  //   }
-  //   this.evtData = sortDate(eventData)
-  // }
-
-  joinEvent(e) {
-    this.modalEvt = Array(e)
-  }
-
+  
   isSigned() {
     let eventData = this.evtData;
 
@@ -94,22 +70,5 @@ export class MainViewComponent {
         eventData[i]['isSignedUp'] = false;
       }
     }
-  }
-
-  signUpEvt() {
-    let modalData = this.modalEvt;
-    let events = this.evtData;
-
-    for(let i = 0; i < modalData.length; i++) {
-      for(let y = 0; y < events.length; y++) {
-        if(modalData[i].id == events[y].id) {
-          if(events[y]['isSignedUp'] == false) {
-            events[y]['isSignedUp'] = true;
-          }
-        }
-      }
-    }
-    this.evtData = events;
-    localStorage.setItem('mainData', JSON.stringify(this.evtData));
   }
 }

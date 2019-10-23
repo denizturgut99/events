@@ -1,0 +1,92 @@
+<div class="centerEvents">
+  <form>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Event</span>
+      </div>
+      <input [(ngModel)]="evtName" name="eventNames" placeholder="Enter the name of the event you are looking for..."
+        type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    </div>
+  </form>
+
+  <div *ngFor='let event of eventData | dateSortPipe | filterEvtName:evtName; let i = index;'>
+
+    <!-- this part is to display ALL EVENTS -->
+    <span *ngIf="router.url === '/allEvents' || router.url === '/'">
+      <div *ngIf='event.date !== eventData[i-1]?.date' class="dates"> {{event.date}} </div>
+      <span class='allEvents'>
+        <div class='time'> {{event.time}} </div>
+        <div class="events">
+          <div class='evtData'>
+            <p> {{event.name}} </p>
+            <p class='freeEvt' *ngIf='event.isFree===true'> Free!! </p>
+          </div>
+          <p class='cityName'> {{event.cityName}} </p>
+        </div>
+        <button *ngIf="event.isSignedUp == false" id='joinButton' class='button' type='button' data-toggle="modal"
+          data-target="#eventModal" (click)="toggleEventStatus(event)"> Join! </button>
+        <p *ngIf="event.isSignedUp == true" class="alreadyJoined">Joined!</p>
+      </span>
+    </span>
+
+    <!-- this part is to display the SIGNED UP EVENTS -->
+    <span *ngIf="router.url === '/signedEvents'">
+      <div *ngIf=" event.isSignedUp == true">
+        <div *ngIf='event.date !== eventData[i-1]?.date' class="dates"> {{event.date}} </div>
+        <span class='allEvents'>
+          <div class='time'> {{event.time}} </div>
+          <div class="events">
+            <div class='evtData'>
+              <p> {{event.name}} </p>
+              <p class='freeEvt' *ngIf='event.isFree===true'> Free!! </p>
+            </div>
+            <p class='cityName'> {{event.cityName}} </p>
+          </div>
+          <button id='joinButton' class='button' type='button' data-toggle="modal" data-target="#eventModal"
+            (click)="toggleEventStatus(event)"> Leave </button>
+        </span>
+      </div>
+    </span>
+
+  </div>
+
+</div>
+
+<!-- <span *ngIf="router.url === '/allEvents' || router.url === '/'">
+  <button *ngIf="event.isSignedUp == false" id='joinButton' class='button' type='button' data-toggle="modal"
+    data-target="#eventModal" (click)="toggleEventStatus(event)"> Join! </button>
+  <p *ngIf="event.isSignedUp == true" class="alreadyJoined">Joined!</p>
+</span> -->
+
+<!-- join event modal -->
+<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="modal-title container" id="exampleModalLabel"> Join the event </p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <span *ngIf="router.url === '/allEvents' || router.url === '/'">
+        <div class="modal-body" *ngFor='let modalData of modalEvt'>
+          <p> You're about to join {{ modalData.name }}. This event takes place the {{ modalData.fullDate }} in
+            {{ modalData.cityName }} </p>
+          <p> Are you sure? </p>
+        </div>
+      </span>
+      <span *ngIf="router.url === '/signedEvents'">
+        <div class="modal-body" *ngFor='let modalData of modalEvt'>
+          <p> You're about to leave {{ modalData.name }}. This event takes place the {{ modalData.fullDate }} in
+            {{ modalData.cityName }} </p>
+          <p> Are you sure? </p>
+        </div>
+      </span>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='changeSignedUpStatus()'>Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
