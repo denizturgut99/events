@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -23,18 +24,23 @@ export class EventViewComponent implements OnInit {
     let modalData = this.modalEvt;
     let events = this.eventData;
 
-    for (let i = 0; i < modalData.length; i++) {
-      for (let y = 0; y < events.length; y++) {
-        if (modalData[i].id == events[y].id) {
-          if (events[y].isSignedUp == false) {
-            events[y].isSignedUp = true;
-          } else if (events[y].isSignedUp == true) {
-            events[y].isSignedUp = false;
-          }
-        }
+    modalData.forEach(modal => {
+      modal.isSignedUp = this.getEventsData(modal.id);
+
+      if (modal.isSignedUp == false) {
+        modal.isSignedUp = true;
       }
-    }
+      else if (modal.isSignedUp == true) {
+        modal.isSignedUp = false;
+      }
+    });
+
     this.eventData = events;
     localStorage.setItem('mainData', JSON.stringify(this.eventData));
   }
+
+  getEventsData(event) {
+    return this.eventData.find(evt => evt.id == event).isSignedUp;
+  }
+
 }

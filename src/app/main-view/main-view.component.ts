@@ -19,7 +19,7 @@ export class MainViewComponent {
     this.mainData.getEvents().subscribe(bData => {
       this.evtData = bData;
       //localStorage.clear()
-      if(localStorage.getItem('mainData') != null) {
+      if (localStorage.getItem('mainData') != null) {
         this.evtData = JSON.parse(localStorage.getItem('mainData'))
       }
       this.runFunctions()
@@ -34,41 +34,35 @@ export class MainViewComponent {
 
   //match the IDs in the event data with the IDs in the city data in order to display the city name
   assignCity() {
-    console.log(this.cityData)
-    console.log(this.evtData)
-    for (let i = 0; i < this.evtData.length; i++) {
-      for (let y = 0; y < this.cityData.length; y++) {
-        if (this.evtData[i].city == this.cityData[y].id) {
-          this.evtData[i]['cityName'] = this.cityData[y].name;
-        }
-      }
-    }
+    this.evtData.forEach(event => {
+      event['cityName'] = this.getCityName(event.city);
+    });
   }
 
-  // getCityName(cityId) {
-  //   return this.cityData.find(city => city.id === cityId).name;
-  // }
+  getCityName(cityId) {
+    return this.cityData.find(city => city.id == cityId).name;
+  }
 
   createTime() {
     let fullDate = [];
 
-    for (let i = 0; i < this.evtData.length; i++) {
-      fullDate.push(this.evtData[i].startDate)
-      for (let y = 0; y < fullDate.length; y++) {
-        this.evtData[i]['time'] = fullDate[y].split('T')[1].slice(0, 5);
-        this.evtData[i]['date'] = new Date(fullDate[y]).toDateString();
-      }
-    }
-    //console.log(this.evtData);
+    this.evtData.forEach(event => {
+      fullDate.push(event.startDate);
+
+      fullDate.forEach(date => {
+        event['time'] = date.split('T')[1].slice(0,5);
+        event['date'] = new Date(date).toDateString();
+      });
+    });
   }
-  
+
   isSigned() {
     let eventData = this.evtData;
 
-    for (let i = 0; i < eventData.length; i++) {
-      if(!eventData[i].hasOwnProperty('isSignedUp')) {
-        eventData[i]['isSignedUp'] = false;
+    eventData.forEach(data => {
+      if (!data.hasOwnProperty('isSignedUp')) {
+        data['isSignedUp'] = false;
       }
-    }
+    });
   }
 }
