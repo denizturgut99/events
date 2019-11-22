@@ -95,8 +95,9 @@ body {
   padding-left: 10px;
 }
 
-.dates {
-  padding-top: 15px;
+.eventDate {
+  margin-top: 15px;
+  margin-bottom: 0px;
 }
 
 .button {

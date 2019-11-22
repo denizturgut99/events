@@ -1,55 +1,56 @@
 <div class="centerEvents">
   <form>
-    <div class="input-group mb-3">
+    <section class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default">Event</span>
+        <p class="input-group-text" id="inputGroup-sizing-default">Event</p>
       </div>
       <input [(ngModel)]="evtName" name="eventNames" placeholder="Enter the name of the event you are looking for..."
         type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-    </div>
+    </section>
   </form>
-  <div *ngIf="eventData">
-  <div *ngFor='let event of eventData | dateSortPipe | filterEvtName:evtName; let i = index;'>
+  <main *ngIf="eventData">
+    <section *ngFor='let event of eventData | dateSortPipe | filterEvtName:evtName; let i = index;'>
 
-    <!-- this part is to display ALL EVENTS -->
-    <span *ngIf="router.url === '/allEvents' || router.url === '/'">
-      <div *ngIf='event.date !== eventData[i-1]?.date' class="dates"> {{event.date}} </div>
-      <span class='allEvents'>
-        <div class='time'> {{event.time}} </div>
-        <div class="events">
-          <div class='evtData'>
-            <p> {{event.name}} </p>
-            <p class='freeEvt' *ngIf='event.isFree===true'> Free!! </p>
-          </div>
-          <p class='cityName'> {{event.cityName}} </p>
-        </div>
-        <button *ngIf="event.isSignedUp == false" id='joinButton' class='button' type='button' data-toggle="modal"
-          data-target="#eventModal" (click)="toggleEventStatus(event)"> Join! </button>
-        <p *ngIf="event.isSignedUp == true" class="alreadyJoined">Joined!</p>
-      </span>
-    </span>
-
-    <!-- this part is to display the SIGNED UP EVENTS -->
-    <span *ngIf="router.url === '/signedEvents'">
-      <div *ngIf=" event.isSignedUp == true">
-        <div *ngIf='event.date !== eventData[i-1]?.date' class="dates"> {{event.date}} </div>
+      <!-- this part is to display ALL EVENTS -->
+      <section *ngIf="router.url === '/allEvents' || router.url === '/'" >
+        <p *ngIf='event.date !== eventData[i-1]?.date' class="eventDate"> {{event.date}} </p>
         <span class='allEvents'>
-          <div class='time'> {{event.time}} </div>
-          <div class="events">
-            <div class='evtData'>
+          <time class='time'> {{event.time}} </time>
+          <section class="events">
+            <article class='evtData'>
               <p> {{event.name}} </p>
               <p class='freeEvt' *ngIf='event.isFree===true'> Free!! </p>
-            </div>
+            </article>
             <p class='cityName'> {{event.cityName}} </p>
-          </div>
-          <button id='joinButton' class='button' type='button' data-toggle="modal" data-target="#eventModal"
-            (click)="toggleEventStatus(event)"> Leave </button>
+          </section>
+          <button *ngIf="event.isSignedUp == false" id='joinButton' class='button' type='button' data-toggle="modal"
+            data-target="#eventModal" (click)="toggleEventStatus(event)"> Join!
+          </button>
+          <p *ngIf="event.isSignedUp == true" class="alreadyJoined">Joined!</p>
         </span>
-      </div>
-    </span>
+      </section>
 
-  </div>
-</div>
+      <!-- this part is to display the SIGNED UP EVENTS -->
+      <section *ngIf="router.url === '/signedEvents'">
+        <main *ngIf=" event.isSignedUp == true">
+          <p *ngIf='event.date !== eventData[i-1]?.date' class="eventDate"> {{event.date}} </p>
+          <span class='allEvents'>
+            <time class='time'> {{event.time}} </time>
+            <section class="events">
+              <article class='evtData'>
+                <p> {{event.name}} </p>
+                <p class='freeEvt' *ngIf='event.isFree===true'> Free!! </p>
+              </article>
+              <p class='cityName'> {{event.cityName}} </p>
+            </section>
+            <button id='joinButton' class='button' type='button' data-toggle="modal" data-target="#eventModal"
+              (click)="toggleEventStatus(event)"> Leave </button>
+          </span>
+        </main>
+      </section>
+
+    </section>
+  </main>
 
 </div>
 
@@ -59,8 +60,10 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p *ngIf="router.url === '/allEvents' || router.url === '/'" class="modal-title container" id="exampleModalLabel"> Join the event </p>
-        <p *ngIf="router.url === '/signedEvents'" class="modal-title container" id="exampleModalLabel"> Leave the event </p>
+        <p *ngIf="router.url === '/allEvents' || router.url === '/'" class="modal-title container"
+          id="exampleModalLabel"> Join the event </p>
+        <p *ngIf="router.url === '/signedEvents'" class="modal-title container" id="exampleModalLabel"> Leave the event
+        </p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
