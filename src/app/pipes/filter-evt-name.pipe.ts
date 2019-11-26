@@ -9,8 +9,8 @@ export class FilterEvtNamePipe implements PipeTransform {
     if(term === undefined) return value;
 
     return value.filter((event) => {
-      let evtName = event.name.toLowerCase().includes(term.toLowerCase())
-      return evtName
+      let nameFilter = event.name.toLowerCase().includes(term.toLowerCase())
+      return nameFilter;
     })
   }
 

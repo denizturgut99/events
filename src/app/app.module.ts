@@ -12,6 +12,8 @@ import { FilterEvtNamePipe } from './pipes/filter-evt-name.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DateSortPipePipe } from './pipes/date-sort-pipe.pipe';
 import { EventViewComponent } from './event-view/event-view.component';
+import { DisplayEventsBodyComponent } from './display-events-body/display-events-body.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { EventViewComponent } from './event-view/event-view.component';
     NotFoundViewComponent,
     FilterEvtNamePipe,
     DateSortPipePipe,
-    EventViewComponent
+    EventViewComponent,
+    DisplayEventsBodyComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

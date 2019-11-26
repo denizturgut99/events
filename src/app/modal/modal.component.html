@@ -1,0 +1,35 @@
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <p *ngIf="router.url === '/allEvents' || router.url === '/'" class="modal-title container"
+         id="exampleModalLabel"> Join the event </p>
+       <p *ngIf="router.url === '/signedEvents'" class="modal-title container" id="exampleModalLabel"> Leave the event
+       </p>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <span *ngIf="router.url === '/allEvents' || router.url === '/'">
+       <div class="modal-body" *ngFor='let modalData of modalEvt'>
+         <p>
+           You're about to join {{ modalData.name }}. This event takes place the {{ modalData.fullDate }} in
+           {{ modalData.cityName }}
+         </p>
+         <p> Are you sure? </p>
+       </div>
+     </span>
+     <span *ngIf="router.url === '/signedEvents'">
+       <div class="modal-body" *ngFor='let modalData of modalEvt'>
+         <p>
+           You're about to leave {{ modalData.name }}. This event takes place the {{ modalData.fullDate }} in
+           {{ modalData.cityName }}
+         </p>
+         <p> Are you sure? </p>
+       </div>
+     </span>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+       <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='changeSignedUpStatus()'>Yes</button>
+     </div>
+   </div>
+ </div>

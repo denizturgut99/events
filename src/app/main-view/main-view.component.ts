@@ -9,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 export class MainViewComponent {
   cityData;
   evtData;
-  modalEvt;
 
   constructor(private mainData: CityJsonDataService) {
     this.mainData.getCities().subscribe(aData => {
@@ -17,12 +16,13 @@ export class MainViewComponent {
     });
 
     this.mainData.getEvents().subscribe(bData => {
-      this.evtData = bData;
       //localStorage.clear()
       if (localStorage.getItem('mainData') != null) {
-        this.evtData = JSON.parse(localStorage.getItem('mainData'))
+        this.evtData = JSON.parse(localStorage.getItem('mainData'));
+      } else {
+        this.evtData = bData;
       }
-      this.runFunctions()
+      this.runFunctions();
     });
   }
 
@@ -50,7 +50,7 @@ export class MainViewComponent {
       fullDate.push(event.startDate);
 
       fullDate.forEach(date => {
-        event['time'] = date.split('T')[1].slice(0,5);
+        event['time'] = date.split('T')[1].slice(0, 5);
         event['date'] = new Date(date).toDateString();
       });
     });
