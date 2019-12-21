@@ -1,5 +1,5 @@
 import { CityJsonDataService } from './../city-json-data.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,6 +11,7 @@ export class ModalComponent {
 
   @Input() modalEvt;
   @Input() eventData;
+  @Output() lastTriggeredEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private router: Router) {  }
 
@@ -23,13 +24,13 @@ export class ModalComponent {
 
       if (modal.isSignedUp == false) {modal.isSignedUp = true;}
       else if (modal.isSignedUp == true) {modal.isSignedUp = false;}
+      this.lastTriggeredEvent.emit(modal.name);
     });
     this.eventData = evtData;
     localStorage.setItem('mainData', JSON.stringify(this.eventData))
   }
 
-  getEventsData(input) {
-    return this.eventData.find(event => event.id == input).isSignedUp;
+  getEventsData(event) {
+    return this.eventData.find(evt => evt.id == event).isSignedUp
   }
-
 }

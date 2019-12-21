@@ -8,6 +8,10 @@
   </section>
 </form>
 
+<section>
+  <p id="lastTriggeredEvent"></p>
+</section>
+
 <main *ngIf="eventData">
   <section *ngFor='let event of eventData | dateSortPipe | filterEvtName:evtName; let i = index;'>
 
@@ -53,5 +57,5 @@
 </main>
 
 <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <app-modal [modalEvt]="modalEvt" [eventData]="eventData"></app-modal>
+    <app-modal (lastTriggeredEvent)="getTriggeredEvent($event)" [modalEvt]="modalEvt" [eventData]="eventData" ></app-modal>
 </div>

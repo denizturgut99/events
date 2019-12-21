@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,6 +11,5 @@ export class EventViewComponent {
   @Input() eventData;
   modalEvt;
 
-  constructor(private router: Router) {  }
-
+  constructor(private router: Router) { }
 }
