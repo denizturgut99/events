@@ -11,7 +11,8 @@ export class DisplayEventsBodyComponent {
   @Input() eventData;
   modalEvt;
   timeoutEvent;
-  //lastJoinedEvent
+  lastJoinedEvent;
+  isVisibleSection = false;
 
   constructor(private router: Router) { }
 
@@ -20,16 +21,14 @@ export class DisplayEventsBodyComponent {
   }
 
   getTriggeredEvent(event) {
-    //this.lastJoinedEvent = event;
-    document.getElementById("lastEvent").style.display = "block";
-
+    this.isVisibleSection = true;
+    //I will have to remove the empty url once the forum page is set up
     if (this.router.url === "/allEvents" || this.router.url === "/") {
-      document.getElementById("lastEvent").innerHTML = "You have joined: " + event;
-      setTimeout(function () { document.getElementById("lastEvent").style.display = "none" }, 3000);
+      this.lastJoinedEvent = "You have joined: " + event;
+      setTimeout(() => { this.isVisibleSection = false }, 3000);
     } else if (this.router.url === "/signedEvents") {
-      document.getElementById("lastEvent").innerHTML = "You have left: " + event;
-      setTimeout(function () { document.getElementById("lastEvent").style.display = "none" }, 3000);
+      this.lastJoinedEvent = "You have left: " + event;
+      setTimeout(() => { this.isVisibleSection = false }, 3000);
     }
-    //setTimeout(document.getElementById("lastJoinedEvent").innerHTML = "You have joined: " + event, 3000);
   }
 }

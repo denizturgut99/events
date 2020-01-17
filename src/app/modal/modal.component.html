@@ -12,6 +12,7 @@
      <span *ngIf="router.url === '/allEvents' || router.url === '/'">
        <div class="modal-body" *ngFor='let modalData of modalEvt'>
          <p>
+           <!-- Instead of you're I will add the user's name there. -->
            You're about to join {{ modalData.name }}. This event takes place the {{ modalData.fullDate }} in
            {{ modalData.cityName }}
          </p>
@@ -21,6 +22,7 @@
      <span *ngIf="router.url === '/signedEvents'">
        <div class="modal-body" *ngFor='let modalData of modalEvt'>
          <p>
+           <!-- Instead of you're I will add the user's name there. -->
            You're about to leave {{ modalData.name }}. This event takes place the {{ modalData.fullDate }} in
            {{ modalData.cityName }}
          </p>

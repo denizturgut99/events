@@ -8,8 +8,8 @@
   </section>
 </form>
 
-<section>
-  <p id="lastEvent"></p>
+<section *ngIf="isVisibleSection == true"> 
+  <p id="lastEvent">{{lastJoinedEvent}}</p>
 </section>
 
 <main *ngIf="eventData">

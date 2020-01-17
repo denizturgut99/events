@@ -14,6 +14,7 @@ import { DateSortPipePipe } from './pipes/date-sort-pipe.pipe';
 import { EventViewComponent } from './event-view/event-view.component';
 import { DisplayEventsBodyComponent } from './display-events-body/display-events-body.component';
 import { ModalComponent } from './modal/modal.component';
+import { ForumViewComponent } from './forum-view/forum-view.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ModalComponent } from './modal/modal.component';
     DateSortPipePipe,
     EventViewComponent,
     DisplayEventsBodyComponent,
-    ModalComponent
+    ModalComponent,
+    ForumViewComponent
   ],
   imports: [
     BrowserModule,
