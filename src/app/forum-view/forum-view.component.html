@@ -7,10 +7,10 @@
   <form action="" class="formText">
 
     <section class="spaceBottom">
-      First Name: <input type="text"><br>
-      Last Name: <input type="text"><br>
+      First Name: <input type="text" id="firstName" name="firstName" /><br>
+      Last Name: <input type="text" id="lastName" name="lastName" /><br>
       Choose your favourite coding language:
-      <select name="codeLangs" class="spaceBottom">
+      <select name="codeLangs" id="favLang" class="spaceBottom">
         <option value="javascript">JavaScript</option>
         <option value="java">Java</option>
         <option value="typescript">TypeScript</option>
@@ -19,10 +19,14 @@
         <option value="c++">C++</option>
         <option value="c#">C#</option>
         <option value="php">PHP</option>
-      </select><br>     
+      </select><br>
     </section>
 
-    <input type="checkbox">Everything is ready<br>
+    <input type="checkbox" id="checkbox" name="isReady" (click)="checkboxCheck()" />Click this checkbox if everything is done.<br>
+
+    <section *ngIf="isChecked">
+      <input type="submit" value="Submit" (click)="submitData()" class="button1" />
+    </section>
 
   </form>
 </main>

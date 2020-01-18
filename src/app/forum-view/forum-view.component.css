@@ -25,3 +25,31 @@ select {
 .spaceBottom {
   margin-bottom: 10px;
 }
+
+input.button1 {
+  display: inline-block;
+  width: 100%;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid rgb(179, 176, 176);
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: rgb(102, 102, 102);
+  text-align: center;
+  transition: all 0.2s;
+}
+
+input.button1:hover {
+  color: #ffffff;
+  background-color: rgb(179, 176, 176);
+}
+
+@media all and (max-width:30em) {
+  input.button1 {
+    display: block;
+    margin: 0.4em auto;
+  }
+}

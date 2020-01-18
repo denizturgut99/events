@@ -11,5 +11,9 @@
         <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="/signedEvents">My Events</a></li>
       </div>
     </div>
+    <section>
+      <p *ngIf="firstName != '' && lastName != ''"> Welcome, {{firstName}} {{lastName}} </p>
+      <p *ngIf="firstName == '' && lastName == ''"> Welcome, user! </p>
+    </section>
   </div>
 </nav>

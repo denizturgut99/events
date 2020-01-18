@@ -13,8 +13,15 @@ export class DisplayEventsBodyComponent {
   timeoutEvent;
   lastJoinedEvent;
   isVisibleSection = false;
+  firstName = "";
+  lastName = "";
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    if(localStorage.getItem("firstName") != null && localStorage.getItem("lastName") != null) {
+      this.firstName = localStorage.getItem("firstName");
+      this.lastName = localStorage.getItem("lastName");
+    }
+  }
 
   toggleModalEvent(event) {
     this.modalEvt = Array(event);
@@ -22,8 +29,7 @@ export class DisplayEventsBodyComponent {
 
   getTriggeredEvent(event) {
     this.isVisibleSection = true;
-    //I will have to remove the empty url once the forum page is set up
-    if (this.router.url === "/allEvents" || this.router.url === "/") {
+    if (this.router.url === "/allEvents") {
       this.lastJoinedEvent = "You have joined: " + event;
       setTimeout(() => { this.isVisibleSection = false }, 3000);
     } else if (this.router.url === "/signedEvents") {

@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
-  constructor() { }
+  firstName = "";
+  lastName = "";
+
+  constructor() {
+    if (localStorage.getItem("firstName") != null && localStorage.getItem("lastName") != null) {
+      this.firstName = localStorage.getItem("firstName");
+      this.lastName = localStorage.getItem("lastName");
+    }
+  }
 
 }
