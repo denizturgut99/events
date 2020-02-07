@@ -17,6 +17,7 @@ export class DisplayEventsBodyComponent {
   lastName = "";
 
   constructor(private router: Router) {
+    
     if(localStorage.getItem("firstName") != null && localStorage.getItem("lastName") != null) {
       this.firstName = localStorage.getItem("firstName");
       this.lastName = localStorage.getItem("lastName");
