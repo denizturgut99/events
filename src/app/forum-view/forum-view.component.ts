@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-forum-view',
@@ -8,42 +8,37 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   styleUrls: ['./forum-view.component.css']
 })
 export class ForumViewComponent {
+  
+  constructor(private router: Router, private fb: FormBuilder) { };
 
   isChecked: boolean;
-  // firstName: string;
-  // lastName: string;
-  
-  constructor(private router: Router, private fb: FormBuilder) { }
 
   public registerForm = this.fb.group({
-    firstName: ['', [Validators.required, Validators.minLength(2), Validators.pattern("[a-zA-Z]*")]],
-    lastName: ['', [Validators.required, Validators.minLength(2), Validators.pattern("[a-zA-Z]*")]]
-  })
+    firstName: ['', [Validators.required, Validators.pattern("[a-zA-ZñÑ]+( [a-zA-ZñÑ]+)*$")]],
+    lastName: ['', [Validators.required, Validators.pattern("[a-zA-ZñÑ]+( [a-zA-ZñÑ]+)*$")]]
+  });
 
   checkboxCheck() {
     this.isChecked = (<HTMLInputElement>document.getElementById("checkbox")).checked;
+  };
+
+  getFirstName() {
+    return this.registerForm.get('firstName');
+  }
+
+  getLastName() {
+    return this.registerForm.get('lastName');
   }
 
   submitData() {
-    // let firstName = (<HTMLInputElement>document.getElementById("firstName")).value;
-    // let lastName = (<HTMLInputElement>document.getElementById("lastName")).value;
-    // let favLang = (<HTMLSelectElement>document.getElementById("favLang")).value;
+    const firstName = this.getFirstName();
+    const lastName = this.getLastName();
 
-    // if (firstName.length > 0 && lastName.length > 0) {
-    //   if (firstName.match("^[a-zA-Z]+$") != null && lastName.match("^[a-zA-Z]+$") != null) {
-    //     localStorage.setItem("firstName", firstName);
-    //     localStorage.setItem("lastName", lastName);
-    //     localStorage.setItem("favLang", favLang);
-    //     this.router.navigate(['/allEvents']);
-    //   } else {
-    //     alert("You are only allowed to use letters in the First Name AND Last Name section")
-    //   }
-    // } else {
-    //   alert("You have to fill in your first AND last name")
-    // }
-    // localStorage.setItem("firstName", this.firstName);
-    // localStorage.setItem("lastName", this.lastName);
-    this.router.navigate(['/allEvents']);
-  }
+    if (firstName.status === "VALID" && lastName.status === "VALID") {
+      localStorage.setItem("firstName", firstName.value);
+      localStorage.setItem("lastName", lastName.value);
+      this.router.navigate(['/allEvents'])
+    }
+  };
 
 }

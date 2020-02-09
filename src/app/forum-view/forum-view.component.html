@@ -8,18 +8,14 @@
 
     <section class="spaceBottom">
       First Name: <input type="text" id="firstName" name="firstName" formControlName="firstName" required><br>
-      <div *ngIf="registerForm.controls.firstName.invalid && (registerForm.controls.firstName.dirty || registerForm.controls.firstName.touched)">
-        <p style="color: red;" [hidden]="registerForm.controls.firstName.required">Your name is required</p>
-        <p style="color: red;" [hidden]="registerForm.controls.firstName.minLength">Your name has to be at least 2 characters long</p>
-        <p style="color: red;" [hidden]="registerForm.controls.firstName.pattern">Your name can't include special characters</p>
-      </div>
+        <p style="color: red;" *ngIf="(registerForm.controls.firstName.dirty || registerForm.controls.firstName.touched) && registerForm.controls.firstName.invalid && registerForm.controls.firstName.errors.required">Your name is required</p>
+        <!-- <p style="color: red;" *ngIf="(registerForm.controls.firstName.dirty || registerForm.controls.firstName.touched) && registerForm.controls.firstName.invalid && registerForm.controls.firstName.errors.minLength">Your name has to be at least 2 characters long</p> -->
+        <p style="color: red;" *ngIf="(registerForm.controls.firstName.dirty || registerForm.controls.firstName.touched) && registerForm.controls.firstName.invalid && registerForm.controls.firstName.errors.pattern">Your name can't include special characters</p>
 
       Last Name: <input type="text" id="lastName" name="lastName" formControlName="lastName" required><br>
-      <div *ngIf="registerForm.controls.lastName.invalid && (registerForm.controls.lastName.dirty || registerForm.controls.lastName.touched)">
-        <p style="color: red;" [hidden]="registerForm.controls.lastName.required">Your last name is required</p>
-        <p style="color: red;" [hidden]="registerForm.controls.lastName.minLength">Your last name has to be at least 2 characters long</p>
-        <p style="color: red;" [hidden]="registerForm.controls.lastName.pattern">Your name can't include special characters</p>
-      </div>
+        <p style="color: red;" *ngIf="(registerForm.controls.lastName.dirty || registerForm.controls.lastName.touched) && registerForm.controls.lastName.invalid && registerForm.controls.lastName.errors.required">Your last name is required</p>
+        <!-- <p style="color: red;" *ngIf="(registerForm.controls.lastName.dirty || registerForm.controls.lastName.touched) && registerForm.controls.lastName.invalid && registerForm.controls.lastName.errors.minLength">Your last name has to be at least 2 characters long</p> -->
+        <p style="color: red;" *ngIf="(registerForm.controls.lastName.dirty || registerForm.controls.lastName.touched) && registerForm.controls.lastName.invalid && registerForm.controls.lastName.errors.pattern">Your name can't include special characters</p>
 
       Choose your favourite coding language:
       <select name="codeLangs" id="favLang" class="spaceBottom">
@@ -37,7 +33,7 @@
     <input type="checkbox" id="checkbox" name="isReady" (click)="checkboxCheck()" />Click this checkbox if everything is done.<br>
 
     <section *ngIf="isChecked">
-      <input type="submit" value="Submit" class="button1" [disabled]="!registerForm.valid">
+      <input type="submit" value="Submit" class="button1" [disabled]="registerForm.invalid">
     </section>
 
   </form>
