@@ -14,8 +14,8 @@ export class ForumViewComponent {
   isChecked: boolean;
 
   public registerForm = this.fb.group({
-    firstName: ['', [Validators.required, Validators.pattern("[a-zA-ZñÑ]+( [a-zA-ZñÑ]+)*$")]],
-    lastName: ['', [Validators.required, Validators.pattern("[a-zA-ZñÑ]+( [a-zA-ZñÑ]+)*$")]]
+    firstName: ['', [Validators.required, Validators.minLength(2), Validators.pattern("[a-zA-ZñÑ]+( [a-zA-ZñÑ]+)*$")]],
+    lastName: ['', [Validators.required, Validators.minLength(2), Validators.pattern("[a-zA-ZñÑ]+( [a-zA-ZñÑ]+)*$")]]
   });
 
   checkboxCheck() {

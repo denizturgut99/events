@@ -15,6 +15,7 @@ import { EventViewComponent } from './event-view/event-view.component';
 import { DisplayEventsBodyComponent } from './display-events-body/display-events-body.component';
 import { ModalComponent } from './modal/modal.component';
 import { ForumViewComponent } from './forum-view/forum-view.component';
+import { CreateEventsComponent } from './create-events/create-events.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ForumViewComponent } from './forum-view/forum-view.component';
     EventViewComponent,
     DisplayEventsBodyComponent,
     ModalComponent,
-    ForumViewComponent
+    ForumViewComponent,
+    CreateEventsComponent
   ],
   imports: [
     BrowserModule,

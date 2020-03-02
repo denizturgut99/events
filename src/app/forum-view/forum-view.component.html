@@ -4,19 +4,25 @@
 </section>
 
 <main class="centerEvents">
-  <form [formGroup]="registerForm" class="formText" (ngSubmit)="submitData()">
+  <form [formGroup]="registerForm" class="formText" (ngSubmit)="submitData()" novalidate>
 
     <section class="spaceBottom">
-      First Name: <input type="text" id="firstName" name="firstName" formControlName="firstName" required><br>
-        <p style="color: red;" *ngIf="(registerForm.controls.firstName.dirty || registerForm.controls.firstName.touched) && registerForm.controls.firstName.invalid && registerForm.controls.firstName.errors.required">Your name is required</p>
-        <!-- <p style="color: red;" *ngIf="(registerForm.controls.firstName.dirty || registerForm.controls.firstName.touched) && registerForm.controls.firstName.invalid && registerForm.controls.firstName.errors.minLength">Your name has to be at least 2 characters long</p> -->
-        <p style="color: red;" *ngIf="(registerForm.controls.firstName.dirty || registerForm.controls.firstName.touched) && registerForm.controls.firstName.invalid && registerForm.controls.firstName.errors.pattern">Your name can't include special characters</p>
-
-      Last Name: <input type="text" id="lastName" name="lastName" formControlName="lastName" required><br>
-        <p style="color: red;" *ngIf="(registerForm.controls.lastName.dirty || registerForm.controls.lastName.touched) && registerForm.controls.lastName.invalid && registerForm.controls.lastName.errors.required">Your last name is required</p>
-        <!-- <p style="color: red;" *ngIf="(registerForm.controls.lastName.dirty || registerForm.controls.lastName.touched) && registerForm.controls.lastName.invalid && registerForm.controls.lastName.errors.minLength">Your last name has to be at least 2 characters long</p> -->
-        <p style="color: red;" *ngIf="(registerForm.controls.lastName.dirty || registerForm.controls.lastName.touched) && registerForm.controls.lastName.invalid && registerForm.controls.lastName.errors.pattern">Your name can't include special characters</p>
-
+      First Name: <input type="text" id="firstName" name="firstName" formControlName="firstName"><br>
+        <p style="color: red;" *ngIf="registerForm.controls.firstName.dirty || registerForm.controls.firstName.touched">
+          <span *ngIf="registerForm.controls.firstName.errors?.required">Your name is required</span> 
+          <span *ngIf="registerForm.controls.firstName.errors?.pattern">Your name can't include special characters</span> 
+          <span *ngIf="registerForm.controls.firstName.errors?.minLength">Your name can't be less than 2 characters</span>
+        </p>
+       
+      Last Name: <input type="text" id="lastName" name="lastName" formControlName="lastName"><br>
+        <p style="color: red;" *ngIf="(registerForm.controls.lastName.dirty || registerForm.controls.lastName.touched)">
+          <span *ngIf="registerForm.controls.lastName.errors?.required">Your last name is required</span> 
+          <span *ngIf="registerForm.controls.lastName.errors?.pattern">Your name can't include special characters</span> 
+          <span *ngIf="registerForm.controls.lastName.errors?.minlength">Your name can't be less than 2 characters</span> 
+        </p>
+      
+        
+       
       Choose your favourite coding language:
       <select name="codeLangs" id="favLang" class="spaceBottom">
         <option value="javascript">JavaScript</option>
