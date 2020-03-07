@@ -40,8 +40,8 @@
         City:
         <select name="city" id="city" formControlName="city">
           <option value="" disabled>Choose a city</option>
-          <option *ngFor="let cityName of cityData" [ngValue]="cityName.id">
-            {{cityName.name}}
+          <option *ngFor="let city of cityData" [ngValue]="city.id">
+            {{city.name}}
           </option>
         </select>
       </section>
@@ -49,7 +49,7 @@
       <section class="spaceBottom">
         Free:
         <select name="isFree" id="selectOption" formControlName="isFree">
-          <option value="" disabled>Please Choose a Value</option>
+          <option value="" disabled>Choose a Value</option>
           <option value="true">True</option>
           <option value="false">False</option>
         </select>
@@ -64,6 +64,8 @@
       <section *ngIf="isChecked">
         <input type="submit" value="Submit" class="button1" [disabled]="createEventsForm.invalid">
       </section>
+
+      {{createEventsForm.value | json}}
 
     </form>
   </section>
