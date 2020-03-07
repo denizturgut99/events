@@ -11,16 +11,18 @@ export class MainViewComponent {
   evtData;
 
   constructor(private mainData: CityJsonDataService) {
-    this.mainData.getCities().subscribe(aData => {
-      this.cityData = aData;
+    this.mainData.getCities().subscribe(cities => {
+      this.cityData = cities;
     });
 
-    this.mainData.getEvents().subscribe(bData => {
+    this.mainData.getEvents().subscribe(events => {
       //localStorage.clear()
       if (localStorage.getItem('mainData') != null) {
         this.evtData = JSON.parse(localStorage.getItem('mainData'));
+        console.log(this.evtData)
       } else {
-        this.evtData = bData;
+        this.evtData = events;
+        console.log(this.evtData)
       }
       this.runFunctions();
     });

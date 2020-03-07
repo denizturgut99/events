@@ -47,6 +47,10 @@ input.button1:hover {
   background-color: rgb(179, 176, 176);
 }
 
+input.button1:disabled {
+  cursor: not-allowed;
+}
+
 @media all and (max-width:30em) {
   input.button1 {
     display: block;

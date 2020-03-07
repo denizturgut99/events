@@ -1,16 +1,19 @@
 <app-navbar></app-navbar>
 <main class="centerEvents">
   <section *ngIf="firstName == '' && lastName == '' ">
-    <p>You need to register your first name and last name to be able to see the events. <a routerLink='/'> Click here to register! </a></p>
+    <p>You need to register your first name and last name to be able to create new events. <a routerLink='/'> Click here
+        to register! </a></p>
   </section>
 
   <section *ngIf="firstName != '' && lastName != '' ">
-    <form [formGroup]="createEventsForm" class="formText">
+    <form [formGroup]="createEventsForm" class="formText" (ngSubmit)="submitData()" novalidate>
       <section class="spaceBottom">
         Event Name: <input type="text" id="eventName" name="eventName" formControlName="eventName"><br>
-        <p style="color: red;" *ngIf="(createEventsForm.controls.eventName.dirty || createEventsForm.controls.eventName.touched)">
+        <p style="color: red;"
+          *ngIf="(createEventsForm.controls.eventName.dirty || createEventsForm.controls.eventName.touched)">
           <span *ngIf="createEventsForm.controls.eventName.errors?.required">Event name is required!</span>
-          <span *ngIf="createEventsForm.controls.eventName.errors?.minLength">The event name has to be at least 2 characters long!</span>
+          <span *ngIf="createEventsForm.controls.eventName.errors?.minLength">The event name has to be at least 2
+            characters long!</span>
         </p>
       </section>
 
@@ -18,17 +21,41 @@
       <section class="spaceBottom">
         Start Date and Time:
         <input type="datetime-local" name="startDate" formControlName="startDate" placeholder="yyyy-MM-ddTHH:mm:ss">
-        <p style="color: red;" *ngIf="(createEventsForm.controls.startDate.dirty || createEventsForm.controls.startDate.touched)">
-           <span *ngIf="createEventsForm.controls.startDate.errors?.required">A start date is required</span>
+        <p style="color: red;"
+          *ngIf="(createEventsForm.controls.startDate.dirty || createEventsForm.controls.startDate.touched)">
+          <span *ngIf="createEventsForm.controls.startDate.errors?.required">A start date is required</span>
         </p>
       </section>
 
       <section class="spaceBottom">
-        Free:<br>
-        <select name="free" id="eventFree">
-            <option value="true">True</option>
-            <option value="false">False</option>
+        End Date and Time:
+        <input type="datetime-local" name="endDate" formControlName="endDate" placeholder="yyyy-MM-ddTHH:mm:ss">
+        <p style="color: red;"
+          *ngIf="(createEventsForm.controls.endDate.dirty || createEventsForm.controls.endDate.touched)">
+          <span *ngIf="createEventsForm.controls.endDate.errors?.required">An end date is required</span>
+        </p>
+      </section>
+
+      <section class="spaceBottom">
+        City:
+        <select name="city" id="city" formControlName="city">
+          <option value="" disabled>Choose a city</option>
+          <option *ngFor="let cityName of cityData" [ngValue]="cityName.id">
+            {{cityName.name}}
+          </option>
         </select>
+      </section>
+
+      <section class="spaceBottom">
+        Free:
+        <select name="isFree" id="selectOption" formControlName="isFree">
+          <option value="" disabled>Please Choose a Value</option>
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+        <p style="color: red;" *ngIf="(createEventsForm.controls.isFree.dirty || createEventsForm.controls.isFree.touched)">
+          <span *ngIf="createEventsForm.controls.isFree.errors?.required">You must choose a value</span>
+        </p>
       </section>
 
       <input type="checkbox" id="checkbox" name="isReady" (click)="checkboxCheck()" />Click this checkbox if everything
@@ -37,6 +64,7 @@
       <section *ngIf="isChecked">
         <input type="submit" value="Submit" class="button1" [disabled]="createEventsForm.invalid">
       </section>
+
     </form>
   </section>
 </main>

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./event-view.component.css']
 })
 export class EventViewComponent {
-
+  
   @Input() eventData;
   modalEvt;
 
